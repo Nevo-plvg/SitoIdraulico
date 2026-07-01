@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Idraulica Bortolin — Interventi rapidi, lavoro fatto bene</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy: #0F2438;
+    --navy-deep: #091729;
+    --steel: #4C6478;
+    --paper: #EDF1F4;
+    --orange: #E85D2C;
+    --orange-deep: #C24A20;
+    --ink: #101820;
+    --grid-line: rgba(237,241,244,0.08);
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+  .display{ font-family: 'Space Grotesk', sans-serif; }
+  .mono{ font-family: 'IBM Plex Mono', monospace; }
+
+  :focus-visible{ outline: 2px solid var(--orange); outline-offset: 3px; }
+
+  /* ---------- header ---------- */
+  header{
+    position: sticky; top:0; z-index: 40;
+    background: var(--navy);
+    border-bottom: 1px solid var(--grid-line);
+  }
+  .nav-wrap{
+    max-width: 1120px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 16px 28px;
+  }
+  .brand{ display:flex; align-items:center; gap:10px; }
+  .brand-mark{
+    width: 30px; height: 30px;
+    border: 2px solid var(--orange);
+    border-radius: 50%;
+    display:flex; align-items:center; justify-content:center;
+    color: var(--orange);
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    flex-shrink:0;
+  }
+  .brand-name{ color: var(--paper); font-size: 1.15rem; font-weight:600; letter-spacing:0.01em; }
+  nav ul{ list-style:none; display:flex; gap: 30px; }
+  nav a{
+    color: rgba(237,241,244,0.75);
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
+    transition: color .2s ease;
+  }
+  nav a:hover{ color: var(--paper); }
+  .nav-links{ display:flex; align-items:center; gap: 30px; }
+  .nav-emergency{
+    background: var(--orange);
+    color: var(--navy-deep);
+    padding: 9px 16px;
+    border-radius: 3px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 600;
+    display:flex; align-items:center; gap:8px;
+  }
+  .nav-emergency:hover{ background: var(--orange-deep); color: var(--paper); }
+  .pulse{
+    width:7px; height:7px; border-radius:50%; background: var(--navy-deep);
+    animation: pulse 1.6s infinite;
+  }
+  @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:0.25;} }
+  @media (max-width: 760px){ nav ul{ display:none; } }
+
+  /* ---------- hero: blueprint grid ---------- */
+  .hero{
+    position: relative;
+    background:
+      repeating-linear-gradient(0deg, var(--grid-line) 0 1px, transparent 1px 48px),
+      repeating-linear-gradient(90deg, var(--grid-line) 0 1px, transparent 1px 48px),
+      linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+    color: var(--paper);
+    padding: 9vw 28px 8vw;
+    overflow: hidden;
+  }
+  .hero-inner{ max-width: 1120px; margin:0 auto; position:relative; z-index:2; }
+  .spec-tag{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--orange);
+    border: 1px solid rgba(232,93,44,0.4);
+    padding: 6px 12px;
+    border-radius: 3px;
+    margin-bottom: 26px;
+  }
+  h1{
+    font-family:'Space Grotesk', sans-serif;
+    font-size: clamp(2.3rem, 5.6vw, 4rem);
+    font-weight: 700;
+    line-height: 1.08;
+    max-width: 16ch;
+  }
+  h1 span{ color: var(--orange); }
+  .hero-sub{
+    margin-top: 24px;
+    max-width: 48ch;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: rgba(237,241,244,0.72);
+  }
+  .hero-actions{ margin-top: 38px; display:flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary{
+    background: var(--orange);
+    color: var(--navy-deep);
+    padding: 15px 28px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: 3px;
+    transition: background .15s ease, transform .15s ease;
+  }
+  .btn-primary:hover{ background: var(--orange-deep); color: var(--paper); transform: translateY(-2px); }
+  .btn-ghost{
+    border: 1px solid rgba(237,241,244,0.3);
+    padding: 15px 28px;
+    font-size: 0.95rem;
+    border-radius: 3px;
+    transition: border-color .15s ease, background .15s ease;
+  }
+  .btn-ghost:hover{ border-color: rgba(237,241,244,0.6); background: rgba(237,241,244,0.05); }
+
+  .hero-meta{
+    margin-top: 56px;
+    display:flex; gap: 40px; flex-wrap:wrap;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .hero-meta div strong{
+    display:block; font-size: 1.5rem; color: var(--paper);
+  }
+  .hero-meta div span{
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(237,241,244,0.55);
+  }
+
+  /* ---------- pipe divider ---------- */
+  .pipe-divider{
+    height: 46px;
+    background: var(--paper);
+    position: relative;
+  }
+  .pipe-divider svg{ width:100%; height:100%; display:block; }
+
+  /* ---------- section shell ---------- */
+  section{ background: var(--paper); }
+  .section-inner{ max-width: 1120px; margin:0 auto; padding: 5.5vw 28px; }
+  .section-head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    gap: 20px; margin-bottom: 46px; flex-wrap: wrap;
+  }
+  .section-num{
+    font-family:'IBM Plex Mono', monospace;
+    color: var(--orange-deep);
+    font-size: 0.76rem;
+    letter-spacing: 0.1em;
+  }
+  h2{
+    font-family:'Space Grotesk', sans-serif;
+    font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+    font-weight: 700;
+  }
+
+  /* ---------- servizi grid ---------- */
+  .servizi-grid{
+    display:grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
+    background: rgba(16,24,32,0.12);
+    border: 1px solid rgba(16,24,32,0.12);
+  }
+  @media (max-width: 700px){ .servizi-grid{ grid-template-columns: 1fr; } }
+  .servizio{
+    background: var(--paper);
+    padding: 32px;
+    transition: background .2s ease;
+  }
+  .servizio:hover{ background: #E2E9EE; }
+  .servizio-icon{ margin-bottom: 18px; }
+  .servizio h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+  }
+  .servizio p{
+    font-size: 0.92rem;
+    color: rgba(16,24,32,0.62);
+    line-height: 1.55;
+  }
+
+  /* ---------- come lavoriamo (real sequence, numbered) ---------- */
+  .come{ background: var(--navy); color: var(--paper); }
+  .come .section-num{ color: var(--orange); }
+  .steps{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap: 28px;
+  }
+  @media (max-width: 900px){ .steps{ grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px){ .steps{ grid-template-columns: 1fr; } }
+  .step{ border-top: 2px solid var(--orange); padding-top: 18px; }
+  .step-num{
+    font-family:'IBM Plex Mono', monospace;
+    color: var(--orange);
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+  }
+  .step h4{
+    font-family:'Space Grotesk', sans-serif;
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+  }
+  .step p{
+    font-size: 0.88rem;
+    color: rgba(237,241,244,0.65);
+    line-height: 1.5;
+  }
+
+  /* ---------- contatti / emergenza ---------- */
+  .contatti-grid{
+    display:grid; grid-template-columns: 1.1fr 1fr; gap: 50px;
+  }
+  @media (max-width: 850px){ .contatti-grid{ grid-template-columns: 1fr; } }
+  .zona-list{ margin-top: 20px; }
+  .zona-row{
+    display:flex; justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(16,24,32,0.12);
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.88rem;
+  }
+  .emergency-card{
+    background: var(--navy-deep);
+    color: var(--paper);
+    padding: 38px;
+    border-radius: 4px;
+    border-left: 4px solid var(--orange);
+  }
+  .emergency-card .spec-tag{ margin-bottom: 20px; }
+  .emergency-card h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-size: 1.4rem;
+    margin-bottom: 14px;
+  }
+  .emergency-card p{
+    color: rgba(237,241,244,0.68);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin-bottom: 26px;
+  }
+  .emergency-phone{
+    display:flex; align-items:center; gap: 14px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--orange);
+    margin-bottom: 22px;
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    background: var(--ink);
+    color: rgba(237,241,244,0.5);
+    text-align:center;
+    padding: 30px 28px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* ---------- reveal ---------- */
+  .reveal{ opacity:0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .reveal{ opacity:1; transform:none; transition:none; }
+    .pulse{ animation:none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <div class="brand">
+      <div class="brand-mark mono">IB</div>
+      <div class="brand-name display">Idraulica Bortolin</div>
+    </div>
+    <div class="nav-links">
+      <ul>
+        <li><a href="#servizi">Servizi</a></li>
+        <li><a href="#come-lavoriamo">Come lavoriamo</a></li>
+        <li><a href="#contatti">Contatti</a></li>
+      </ul>
+      <a class="nav-emergency" href="tel:+390491234567"><span class="pulse"></span>Urgenza 24/7</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="spec-tag mono">Interventi in giornata</div>
+    <h1>Il tuo idraulico quando <span>serve davvero</span>, non tra due settimane.</h1>
+    <p class="hero-sub">Perdite, scaldabagni, caldaie, scarichi otturati. Rispondiamo al telefono, diamo un orario preciso e ci presentiamo. Zona Abano Terme e comuni limitrofi.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="tel:+390491234567">Chiama ora — 049 123 4567</a>
+      <a class="btn-ghost" href="#servizi">Vedi i servizi</a>
+    </div>
+    <div class="hero-meta">
+      <div><strong>15+</strong><span>Anni di attività</span></div>
+      <div><strong>&lt; 2h</strong><span>Tempo medio urgenze</span></div>
+      <div><strong>24/7</strong><span>Reperibilità guasti</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="pipe-divider" aria-hidden="true">
+  <svg viewBox="0 0 1120 46" preserveAspectRatio="none">
+    <line x1="0" y1="23" x2="1120" y2="23" stroke="#4C6478" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round"/>
+    <circle cx="140" cy="23" r="7" fill="#EDF1F4" stroke="#4C6478" stroke-width="2"/>
+    <circle cx="560" cy="23" r="7" fill="#EDF1F4" stroke="#4C6478" stroke-width="2"/>
+    <circle cx="980" cy="23" r="7" fill="#EDF1F4" stroke="#4C6478" stroke-width="2"/>
+  </svg>
+</div>
+
+<section id="servizi">
+  <div class="section-inner reveal">
+    <div class="section-head">
+      <h2>Servizi</h2>
+      <div class="section-num">Interventi civili e commerciali</div>
+    </div>
+    <div class="servizi-grid">
+      <div class="servizio">
+        <div class="servizio-icon">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#E85D2C" stroke-width="1.6"><path d="M12 2v6M8 8h8l-1 12H9L8 8z"/></svg>
+        </div>
+        <h3 class="display">Perdite e allagamenti</h3>
+        <p>Ricerca perdita, riparazione tubazioni, interventi d'urgenza su allagamenti.</p>
+      </div>
+      <div class="servizio">
+        <div class="servizio-icon">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#E85D2C" stroke-width="1.6"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M9 8h6M9 12h6"/></svg>
+        </div>
+        <h3 class="display">Scaldabagni e caldaie</h3>
+        <p>Installazione, manutenzione e riparazione di scaldabagni elettrici e caldaie a gas.</p>
+      </div>
+      <div class="servizio">
+        <div class="servizio-icon">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#E85D2C" stroke-width="1.6"><path d="M4 12a8 8 0 1116 0"/><path d="M12 12l4-5"/></svg>
+        </div>
+        <h3 class="display">Scarichi otturati</h3>
+        <p>Disotturazione scarichi con sonda professionale, bagni, cucine, colonne di scarico.</p>
+      </div>
+      <div class="servizio">
+        <div class="servizio-icon">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#E85D2C" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 12h8M12 8v8"/></svg>
+        </div>
+        <h3 class="display">Sanitari e rubinetteria</h3>
+        <p>Sostituzione e installazione di lavandini, WC, docce, miscelatori.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="come" id="come-lavoriamo">
+  <div class="section-inner reveal">
+    <div class="section-head">
+      <h2>Come lavoriamo</h2>
+      <div class="section-num">Dalla chiamata all'intervento</div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h4 class="display">Chiami</h4>
+        <p>Ci descrivi il problema, ti diamo subito un orario indicativo.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h4 class="display">Sopralluogo</h4>
+        <p>Arriviamo, valutiamo il guasto e ti spieghiamo cosa serve.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h4 class="display">Preventivo</h4>
+        <p>Prezzo chiaro prima di iniziare, nessuna sorpresa in fattura.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h4 class="display">Intervento</h4>
+        <p>Riparazione eseguita e area di lavoro lasciata pulita.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contatti">
+  <div class="section-inner reveal">
+    <div class="section-head">
+      <h2>Contatti</h2>
+      <div class="section-num">Zona di intervento</div>
+    </div>
+    <div class="contatti-grid">
+      <div>
+        <p style="color:rgba(16,24,32,0.65); line-height:1.6; max-width:44ch;">Copriamo Abano Terme e i comuni limitrofi. Fuori zona, chiedi comunque: valutiamo caso per caso.</p>
+        <div class="zona-list">
+          <div class="zona-row"><span>Abano Terme</span><span>Sempre</span></div>
+          <div class="zona-row"><span>Montegrotto Terme</span><span>Sempre</span></div>
+          <div class="zona-row"><span>Padova e provincia</span><span>Su richiesta</span></div>
+        </div>
+      </div>
+      <div class="emergency-card">
+        <div class="spec-tag mono">Guasto in corso?</div>
+        <h3>Reperibilità 24/7 per le urgenze</h3>
+        <p>Allagamenti, perdite gravi, caldaia in blocco d'inverno: chiama, non scrivere. Rispondiamo anche di notte e nei festivi.</p>
+        <a class="emergency-phone mono" href="tel:+390491234567">049 123 4567</a>
+        <a class="btn-primary" href="tel:+390491234567" style="display:inline-block;">Chiama ora</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  SITO DI ESEMPIO — REALIZZATO COME DEMO PER CLIENTI
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
